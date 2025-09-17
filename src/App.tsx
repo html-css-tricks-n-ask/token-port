@@ -15,7 +15,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 const config = getDefaultConfig({
   appName: 'Token Portfolio',
-  projectId: 'YOUR_PROJECT_ID',
+  projectId: '2f5a5865e0a64b3f9c5d8b3c7e1f9a8d', // Demo project ID
   chains: [mainnet, polygon, optimism, arbitrum, base],
   ssr: false,
 });
@@ -25,7 +25,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <WagmiProvider config={config}>
     <QueryClientProvider client={queryClient}>
-      <RainbowKitProvider>
+      <RainbowKitProvider theme={undefined} showRecentTransactions={true}>
         <Provider store={store}>
           <TooltipProvider>
             <Toaster />
