@@ -63,9 +63,6 @@ const PortfolioChart = () => {
               <div className="text-card-foreground font-medium">
                 {entry.payload.percentage.toFixed(1)}%
               </div>
-              <div className="text-muted-foreground text-xs">
-                ${entry.payload.value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </div>
             </div>
           </div>
         ))}
@@ -86,27 +83,70 @@ const PortfolioChart = () => {
   }
 
   return (
-    <div className="w-full h-64">
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart>
-          <Pie
-            data={chartData}
-            cx="50%"
-            cy="50%"
-            innerRadius={60}
-            outerRadius={100}
-            paddingAngle={2}
-            dataKey="value"
-            stroke="none"
-          >
-            {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.color} />
-            ))}
-          </Pie>
-          <Tooltip content={<CustomTooltip />} />
-          <Legend content={<CustomLegend />} />
-        </PieChart>
-      </ResponsiveContainer>
+    <div className="w-full space-y-6">
+      {/* Mobile: Chart and legend stacked vertically */}
+      <div className="flex flex-col items-center space-y-6 sm:hidden">
+        <div className="flex-shrink-0">
+          <ResponsiveContainer width={240} height={240}>
+            <PieChart>
+              <Pie
+                data={chartData}
+                cx="50%"
+                cy="50%"
+                innerRadius={50}
+                outerRadius={80}
+                paddingAngle={2}
+                dataKey="value"
+                stroke="none"
+              >
+                {chartData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip content={<CustomTooltip />} />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="w-full">
+          <CustomLegend payload={chartData.map(item => ({
+            value: item.name,
+            color: item.color,
+            payload: item
+          }))} />
+        </div>
+      </div>
+      
+      {/* Desktop: Chart and legend side by side */}
+      <div className="hidden sm:flex flex-row items-center gap-6">
+        <div className="flex-shrink-0">
+          <ResponsiveContainer width={240} height={240}>
+            <PieChart>
+              <Pie
+                data={chartData}
+                cx="50%"
+                cy="50%"
+                innerRadius={50}
+                outerRadius={80}
+                paddingAngle={2}
+                dataKey="value"
+                stroke="none"
+              >
+                {chartData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip content={<CustomTooltip />} />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="flex-1 min-w-0">
+          <CustomLegend payload={chartData.map(item => ({
+            value: item.name,
+            color: item.color,
+            payload: item
+          }))} />
+        </div>
+      </div>
     </div>
   );
 };
