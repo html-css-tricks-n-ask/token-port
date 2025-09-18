@@ -7,12 +7,13 @@ const WalletConnect = () => {
 
   // Fallback component in case of RainbowKit issues
   const FallbackConnect = () => (
-    <Button 
-      className="bg-[#A9E851] text-black hover:bg-[#94cc44]"
-      onClick={() => console.log('Wallet connection not available')}
-    >
-      Connect Wallet
-    </Button>
+  <Button 
+  className="bg-[#A9E851] text-black hover:bg-[#94cc44] border border-black rounded-full"
+  onClick={() => console.log('Wallet connection not available')}
+>
+  Connect Wallet
+</Button>
+
   );
 
   try {
