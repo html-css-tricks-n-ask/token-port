@@ -8,8 +8,7 @@ const WalletConnect = () => {
   // Fallback component in case of RainbowKit issues
   const FallbackConnect = () => (
     <Button 
-      variant="outline"
-      className="border-primary/50 text-primary hover:bg-primary/10"
+      className="bg-[#A9E851] text-black hover:bg-[#94cc44]"
       onClick={() => console.log('Wallet connection not available')}
     >
       Connect Wallet
@@ -40,7 +39,7 @@ const WalletConnect = () => {
             <div
               {...(!ready && {
                 'aria-hidden': true,
-                'style': {
+                style: {
                   opacity: 0,
                   pointerEvents: 'none',
                   userSelect: 'none',
@@ -52,8 +51,7 @@ const WalletConnect = () => {
                   return (
                     <Button 
                       onClick={openConnectModal} 
-                      variant="outline"
-                      className="border-primary/50 text-primary hover:bg-primary/10"
+                      className="bg-[#A9E851] text-black hover:bg-[#94cc44]"
                     >
                       Connect Wallet
                     </Button>
@@ -72,12 +70,14 @@ const WalletConnect = () => {
                   <div className="flex items-center space-x-2">
                     <Button
                       onClick={openAccountModal}
-                      variant="outline"
-                      className="border-primary/50 text-primary hover:bg-primary/10"
+                      className="bg-[#A9E851] text-black hover:bg-[#94cc44]"
                     >
                       <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-success rounded-full animate-pulse" />
-                        <span>{account.ensName || `${account.address.slice(0, 6)}...${account.address.slice(-4)}`}</span>
+                        <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse" />
+                        <span>
+                          {account.ensName ||
+                            `${account.address.slice(0, 6)}...${account.address.slice(-4)}`}
+                        </span>
                       </div>
                     </Button>
                   </div>
